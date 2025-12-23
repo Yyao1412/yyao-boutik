@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>YYAO BOUTIK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> <!-- MENU LATÉRAL -->
+<div id="side-menu" class="side-menu">
+    <div class="menu-header">
+        <strong>Catégories</strong>
+        <span onclick="toggleMenu()">✖</span>
+    </div>
+
+    <ul>
+        <li onclick="choisirCategorie('all')">Tous</li>
+        <li onclick="choisirCategorie('mode')">Mode</li>
+        <li onclick="choisirCategorie('telephone')">Téléphones</li>
+        <li onclick="choisirCategorie('informatique')">Informatique</li>
+    </ul>
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="toggleCart()"></div>
+
+<!-- HEADER -->
+<header class="header">
+    <span class="menu-icon" onclick="toggleMenu()">☰</span>
+
+    <div class="logo">
+        <span class="logo-main">YYAO</span>
+        <span class="logo-sub">BOUTIK</span>
+    </div>
+
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒 <span id="cart-count">0</span>
+    </div>
+</header>
+<section class="search-box">
+    <input
+        type="text"
+        id="search"
+        placeholder="Rechercher un produit..."
+        onkeyup="rechercherProduit()"
+    >
+</section>
+<!-- BANNER -->
+<div class="banner">
+    🚚 Livraison rapide partout en Côte d’Ivoire – Paiement Mobile Money sécurisé
+</div>
+<!-- OVERLAY PANIER -->
+<div id="cart-overlay" class="overlay" onclick="toggleCart()"></div>
+
+<!-- PANIER LATÉRAL -->
+<div id="cart-panel" class="cart-panel">
+    <div class="cart-header">
+        <h3>🛒 Votre panier</h3>
+        <span class="close-btn" onclick="toggleCart()">✕</span>
+    </div>
+
+    <ul id="cart-items"></ul>
+
+    <p class="cart-total">
+        Total : <span id="total">0</span> FCFA
+    </p>
+
+    <button class="whatsapp-btn" onclick="payerWhatsApp()">
+        Commander sur WhatsApp
+    </button>
+</div>
+<!-- PANIER -->
+<div id="cart" class="cart">
+    <h3>Votre panier</h3>
+    <ul id="cart-items"></ul>
+    <p>Total : <strong><span id="total">0</span> FCFA</strong></p>
+    <button class="whatsapp-btn" onclick="payerWhatsApp()">Commander sur WhatsApp</button>
+</div>
+
+<!-- ===== PRODUITS ===== -->
+<section class="products">
+    <h2>Nos produits</h2>
+
+    <div class="product-card" data-category="mode">
+        <img src="img/tshirt-noir.jpg" alt="T-shirt Noir">
+        <h4>T-shirt Noir</h4>
+        <p>5 000 FCFA</p>
+        <button onclick="ajouterPanier('T-shirt Noir', 5000)">
+            Ajouter au panier
+        </button>
+    </div>
+
+    <div class="product-card" data-category="mode">
+        <img src="img/casquette.jpg" alt="Casquette">
+        <h4>Casquette</h4>
+        <p>3 000 FCFA</p>
+        <button onclick="ajouterPanier('Casquette', 3000)">
+            Ajouter au panier
+        </button>
+    </div>
+
+    <div class="product-card" data-category="telephone">
+        <img src="img/iphone.jpg" alt="iPhone XR">
+        <h4>iPhone XR</h4>
+        <p>120 000 FCFA</p>
+        <button onclick="ajouterPanier('iPhone XR', 120000)">
+            Ajouter au panier
+        </button>
+    </div>
+
+    <div class="product-card" data-category="informatique">
+        <img src="img/ordinateur.jpg" alt="Ordinateur Portable">
+        <h4>Ordinateur Portable</h4>
+        <p>250 000 FCFA</p>
+        <button onclick="ajouterPanier('Ordinateur Portable', 250000)">
+            Ajouter au panier
+        </button>
+    </div>
+</section>
+
+<!-- INFOS CLIENT -->
+<section class="client-info-pro">
+    <h3>📦 Informations de livraison</h3>
+
+    <div class="input-group">
+        <span class="input-icon">👤</span>
+        <input type="text" id="nom" placeholder="Nom complet">
+    </div>
+
+    <div class="input-group">
+        <span class="input-icon">📞</span>
+        <input type="tel" id="telephone" placeholder="Numéro de téléphone">
+    </div>
+
+    <div class="input-group">
+        <span class="input-icon">📍</span>
+        <input type="text" id="adresse" placeholder="Adresse de livraison">
+    </div>
+
+    <p class="info-note">
+        ⚠️ Assurez-vous que les informations sont correctes pour une livraison rapide.
+    </p>
+</section>
+
+<!-- PAIEMENT -->
+<section class="paiement-box">
+    <h3>💳 Paiement Mobile Money</h3>
+
+    <div class="paiement-item">✔ Wave : <strong>0150062259</strong></div>
+    <div class="paiement-item">✔ Orange Money : <strong>0757606713</strong></div>
+    <div class="paiement-item">✔ MTN MoMo : <strong>0506641440</strong></div>
+
+    <p class="paiement-note">
+        Après paiement, confirmez votre commande sur WhatsApp
+    </p>
+</section>
+
+<!-- LIVRAISON -->
+<section class="livraison-pro">
+    <h3>🚚 Livraison & Conditions</h3>
+
+    <div class="livraison-card">
+        <div class="livraison-row">
+            <span class="livraison-icon">📍</span>
+            <div>
+                <strong>Abidjan</strong>
+                <p>Livraison en 24 heures</p>
+            </div>
+        </div>
+
+        <div class="livraison-row">
+            <span class="livraison-icon">🚛</span>
+            <div>
+                <strong>Intérieur du pays</strong>
+                <p>48 à 72 heures</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="livraison-alert">
+        ⚠️ Aucun remboursement après livraison
+    </div>
+</section>
+
+<footer class="footer">
+    © 2025 YYAO BOUTIK
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
